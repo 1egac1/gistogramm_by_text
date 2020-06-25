@@ -32,6 +32,47 @@ int count_sym (char* text, int16_t* mas_pointer){
 
 }
 
+int biggest(int word_cnt, int16_t *in_every_word){
+    int bigest = 0;
+
+    for (int i = 1; i < word_cnt; i++){
+        if (*in_every_word > *(in_every_word - 1)){
+            bigest = i;
+        }
+    }
+
+    return bigest;
+}
+
+int is_nothing(int16_t *in_every_word, int word_cnt){
+    for (int i = 0; i < word_cnt; i++){
+        if (*(in_every_word + i) != 0)
+            return 0;
+    }
+
+    return 1;
+}
+
+void gistogramm_drawing(int word_cnt, int16_t *in_every_word){
+    int16_t massive[word_cnt + 1];
+    for (int i = 0; i < word_cnt; i++){
+        massive[i] = *(in_every_word + i);
+    }
+
+    int biggest_1 = biggest(word_cnt, in_every_word);
+
+    while (is_nothing(in_every_word, word_cnt) != 1){
+        biggest_1 = biggest(word_cnt, in_every_word);
+        for (int i = 0; i < word_cnt; i++){
+            if (*(in_every_word + i) == biggest_1){
+                printf("# ");
+                (*(in_every_word + i))--;
+            }
+        }
+        printf("\n");
+    }
+}
+
 int main () {
     char my_string[] = "Hello World!";
     int word_counter = count_word(&my_string[0]);
@@ -39,10 +80,11 @@ int main () {
 
     count_sym(&my_string[0], &words_sym_counter[0]);
 
-    for (int i = 0; i < word_counter; i++){
-        printf("%d ", words_sym_counter[i]);
-    }
-    printf("%d\n", word_counter);
+//    for (int i = 0; i < word_counter; i++){
+//        printf("%d ", words_sym_counter[i]);
+//    }
+//    printf("%d\n", word_counter);
+    gistogramm_drawing(word_counter, &words_sym_counter[0]);
 
     return 0;
 }
