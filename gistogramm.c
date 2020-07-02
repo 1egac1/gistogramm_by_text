@@ -76,7 +76,9 @@ void gistogramm_drawing(int word_cnt, int16_t *in_every_word){
 }
 
 int main () {
-    char my_string[] = "Hello my World!";
+    char my_string[200];
+    fgets(my_string, 199, stdin);
+
     int word_counter = count_word(&my_string[0]);
     int16_t words_sym_counter[word_counter + 1];
 
