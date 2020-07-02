@@ -76,6 +76,7 @@ void gistogramm_drawing(int word_cnt, int16_t *in_every_word){
 }
 
 int main () {
+    printf("Put your text here: ");
     char my_string[200];
     fgets(my_string, 199, stdin);
 
