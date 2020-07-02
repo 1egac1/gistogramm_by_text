@@ -59,17 +59,17 @@ void gistogramm_drawing(int word_cnt, int16_t *in_every_word){
         massive[i] = *(in_every_word + i);
     }
 
-    int biggest_1 = biggest(word_cnt, in_every_word);
+    int biggest_1 = biggest(word_cnt, &massive[0]);
 
-    while (is_nothing(in_every_word, word_cnt) != 1){
-        biggest_1 = biggest(word_cnt, in_every_word);
-        for (int i = 0; i < word_cnt; i++){
-            if (*(in_every_word + i) == biggest_1){
+    while (is_nothing(&massive[0], word_cnt) != 1){
+        biggest_1 = biggest(word_cnt, &massive[0]);
+        for(int i = 0; i < word_cnt; i++){
+            if (massive[i] == massive[biggest_1]){
                 printf("# ");
-                (*(in_every_word + i))--;
+                massive[i]--;
             }
         }
-        printf("\n");
+        putchar('\n');
     }
 }
 
