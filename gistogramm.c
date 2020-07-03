@@ -79,7 +79,8 @@ int main () {
     printf("Put your text here: ");
     char my_string[200];
     fgets(my_string, 199, stdin);
-
+    printf("\n");
+    
     int word_counter = count_word(&my_string[0]);
     int16_t words_sym_counter[word_counter + 1];
 
